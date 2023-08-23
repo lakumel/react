@@ -1,6 +1,8 @@
 import Viewer from "./component/Viewer";
 import Controller from "./component/Controller";
-import {useState} from 'react'; 
+import {useRef , useState} from 'react'; 
+import './App.css'; 
+import Event from "./component/Event";
 
 
 function App() {
@@ -16,13 +18,19 @@ function App() {
         setCount ( count + value) ; 
     }
 
+    //useRef 를 사용해서 컴포넌트가 생성될때는 작동되지 않도록 설정 
+    const didMountRef = useRef(false); 
+
+
   return (
     <div className="App">
         <h1> Simple Counter </h1>
 
         <section>
         <Viewer count = {count} /> 
+        { count % 2 === 0 && <Event />}
         </section>
+
 
         <section>
         <Controller  handleSetCount = {handleSetCount} /> 
